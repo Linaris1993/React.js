@@ -83,44 +83,44 @@ function App() {
               {count}
               <button onClick={plusBtn}>Plus</button>
 
-              {/*  <Header />*/}
-        {/*    {hello(name)}*/}
-        {/*    <ul>*/}
-        {/*    {names.map(el => <li key={el.id}>{el.title} {el.phone}</li>)}*/}
-        {/*    </ul>*/}
+                <Header />
+            {hello(name)}
+            <ul>
+            {names.map(el => <li key={el.id}>{el.title} {el.phone}</li>)}
+            </ul>
 
-        {/*    <button onClick={helloClick}>Hello again</button>*/}
-        {/*    <button onClick={() => console.log('Plus')}>Plus</button>*/}
-        {/*    <button onClick={() => plusNumber(123)}>Plus Number</button>*/}
+            <button onClick={helloClick}>Hello again</button>
+            <button onClick={() => console.log('Plus')}>Plus</button>
+            <button onClick={() => plusNumber(123)}>Plus Number</button>
 
-        {/*    <hr />*/}
+            <hr />
 
-        {/*    <input onChange={onChangeName}/>*/}
+            <input onChange={onChangeName}/>
 
-        {/*    <Logo*/}
-        {/*        siteName={siteName}*/}
-        {/*    />*/}
+            <Logo
+                siteName={siteName}
+            />
 
-        {/*    <TaskList*/}
-        {/*        siteName={appName}*/}
-        {/*        appVersion={version}*/}
-        {/*    />*/}
+            <TaskList
+                siteName={appName}
+                appVersion={version}
+            />
 
-        {/*    <TopMenu*/}
-        {/*        appVersion={version}*/}
-        {/*    />*/}
+            <TopMenu
+                appVersion={version}
+            />
 
-        {/*     <MainMenu*/}
-        {/*        siteName={siteName}*/}
-        {/*        isPublic={isPublic}*/}
-        {/*        owner={owner}*/}
-        {/*        courses={courses}*/}
-        {/*     />*/}
+             <MainMenu
+                siteName={siteName}
+                isPublic={isPublic}
+                owner={owner}
+                courses={courses}
+             />
 
-        {/*     <Contact name='some name'>*/}
-        {/*         <h4>Hello</h4>*/}
-        {/*         <div>Description</div>*/}
-        {/*     </Contact>*/}
+             <Contact name='some name'>
+                 <h4>Hello</h4>
+                 <div>Description</div>
+             </Contact>
 
         </div>
   );
