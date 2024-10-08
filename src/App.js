@@ -8,6 +8,7 @@ import Logo from "./Logo";
 import Contact from "./Contact";
 import { useState } from 'react';
 
+
 //JSX
 function App() {
 
@@ -83,8 +84,12 @@ function App() {
               {count}
               <button onClick={plusBtn}>Plus</button>
 
+              <hr/>
+              <button>Add counter</button>
+
                 <Header />
             {hello(name)}
+
             <ul>
             {names.map(el => <li key={el.id}>{el.title} {el.phone}</li>)}
             </ul>
