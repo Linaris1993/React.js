@@ -1,12 +1,11 @@
 import './App.css';
 import Header from "./Header";
-import React from "react";
+import React, {useState} from "react";
 import TaskList from "./TaskList";
 import TopMenu from "./TopMenu";
 import MainMenu from "./MainMenu";
 import Logo from "./Logo";
 import Contact from "./Contact";
-import { useState } from 'react';
 
 
 //JSX
@@ -69,36 +68,104 @@ function App() {
             price: 2134
         }
     ]
+    const initialCounters = [
+        {
+            id: 123,
+            value: 10
+        },
+        {
+            id: 456,
+            value: 200
+        },
+        {
+            id: 'sdfg',
+            value: -300
+        }
+    ]
+
+    const [counts, setCounts] = useState(initialCounters);
+
+    const minus = (id) => {
+        const updatedCounts = counts.map(el => el.id === id ? {...el, value: el.value - 1} : el)
+        setCounts(updatedCounts)
+    };
+
+    const plus = (id) => {
+        const updatedCounts = counts.map(el => el.id === id ? {...el, value: el.value + 1} : el)
+        setCounts(updatedCounts)
+    };
+
+    const addCounter = () => {
+        const newCount = {
+            id: Math.random(),
+            value: 0
+        };
+
+        setCounts([...counts, newCount])
+    };
 
     const [count, setCount] = useState(5);
+
     const plusBtn = () => {
         setCount(count + 1)
     };
     const minusBtn = () => {
-        setCount(count -1)
+        setCount(count - 1)
     };
 
-      return (
-          <div className="App">
-              <button onClick={minusBtn}>Minus</button>
-              {count}
-              <button onClick={plusBtn}>Plus</button>
+    const [nameInput, setName] = useState('react lesson');
+    const changeName = (e) => {
+        console.log(e.target.value)
+        setName(e.target.value)
+    };
 
-              <hr/>
-              <button>Add counter</button>
+    const [num1, setNumber1] = useState(0);
+    const [num2, setNumber2] = useState(0);
+    const [result, setResult] = useState(0);
+    const [operand, setOperand] = useState('+');
 
-                <Header />
+    const changeNum1 = (e) => {
+        setNumber1(+e.target.value)
+    };
+    const changeNum2 = (e) => {
+        setNumber2(+e.target.value)
+    };
+    const changeOperand = (e) => {
+        const operand = e.target.value;
+
+        if(operand === '+') setResult(num1 + num2)
+        if(operand === '-') setResult(num1 - num2)
+        if(operand === '*') setResult(num1 * num2)
+        if(operand === '/') setResult(num1 / num2)
+
+        setOperand(operand)
+    };
+
+    const changeNumberOrOperand = () => {
+
+    };
+
+    return (
+        <div className="App">
+            <button onClick={minusBtn}>Minus</button>
+            {count}
+            <button onClick={plusBtn}>Plus</button>
+
+            <hr/>
+            <button>Add counter</button>
+
+            <Header/>
             {hello(name)}
 
             <ul>
-            {names.map(el => <li key={el.id}>{el.title} {el.phone}</li>)}
+                {names.map(el => <li key={el.id}>{el.title} {el.phone}</li>)}
             </ul>
 
             <button onClick={helloClick}>Hello again</button>
             <button onClick={() => console.log('Plus')}>Plus</button>
             <button onClick={() => plusNumber(123)}>Plus Number</button>
 
-            <hr />
+            <hr/>
 
             <input onChange={onChangeName}/>
 
@@ -115,20 +182,44 @@ function App() {
                 appVersion={version}
             />
 
-             <MainMenu
+            <MainMenu
                 siteName={siteName}
                 isPublic={isPublic}
                 owner={owner}
                 courses={courses}
-             />
+            />
 
-             <Contact name='some name'>
-                 <h4>Hello</h4>
-                 <div>Description</div>
-             </Contact>
+            <Contact name='some name'>
+                <h4>Hello</h4>
+                <div>Description</div>
+            </Contact>
 
+            <ul>
+                {counts.map(el => (
+                    <li key={el.id}>
+                        <button onClick={() => minus(el.id)}>Minus</button>
+                        {el.value}
+                        <button onClick={() => plus(el.id)}>Plus</button>
+                    </li>
+                ))}
+            </ul>
+            <button onClick={addCounter}>Add counter</button>
+
+            <h3>{nameInput}</h3>
+            <input value={nameInput} onChange={changeName}/>
+
+            <select value={operand} onChange={changeOperand}>
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="*">*</option>
+                <option value="/">/</option>
+            </select>
+
+            <input value={num1} onChange={changeNum1}/>
+            <input value={num2} onChange={changeNum2}/>
+            <h4>{num1} {operand} {num2} = {result}</h4>
         </div>
-  );
+    );
 }
 
 export default App;
