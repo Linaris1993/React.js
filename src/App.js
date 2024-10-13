@@ -126,23 +126,25 @@ function App() {
 
     const changeNum1 = (e) => {
         setNumber1(+e.target.value)
+        changeNumberOrOperand(+e.target.value, num2, operand)
     };
+
     const changeNum2 = (e) => {
         setNumber2(+e.target.value)
+        changeNumberOrOperand(num1, +e.target.value, operand)
     };
+
     const changeOperand = (e) => {
         const operand = e.target.value;
-
-        if(operand === '+') setResult(num1 + num2)
-        if(operand === '-') setResult(num1 - num2)
-        if(operand === '*') setResult(num1 * num2)
-        if(operand === '/') setResult(num1 / num2)
-
+        changeNumberOrOperand(num1, num2, operand)
         setOperand(operand)
     };
 
-    const changeNumberOrOperand = () => {
-
+    const changeNumberOrOperand = (n1, n2, opnd) => {
+        if(opnd === '+') setResult(n1 + n2)
+        if(opnd === '-') setResult(n1 - n2)
+        if(opnd === '*') setResult(n1 * n2)
+        if(opnd === '/') setResult(n1 / n2)
     };
 
     return (
@@ -208,14 +210,13 @@ function App() {
             <h3>{nameInput}</h3>
             <input value={nameInput} onChange={changeName}/>
 
+            <input value={num1} onChange={changeNum1}/>
             <select value={operand} onChange={changeOperand}>
                 <option value="+">+</option>
                 <option value="-">-</option>
                 <option value="*">*</option>
                 <option value="/">/</option>
             </select>
-
-            <input value={num1} onChange={changeNum1}/>
             <input value={num2} onChange={changeNum2}/>
             <h4>{num1} {operand} {num2} = {result}</h4>
         </div>
